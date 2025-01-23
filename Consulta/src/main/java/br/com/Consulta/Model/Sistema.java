@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import lombok.Data;
 
 @Data
-@Entity
+@Entity(name = "sistema_entity")
 public class Sistemas {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

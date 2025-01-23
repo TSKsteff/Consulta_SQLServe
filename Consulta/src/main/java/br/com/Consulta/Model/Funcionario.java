@@ -13,8 +13,8 @@ import javax.persistence.Id; //indicando o campo de membros abaixo é a chave pr
 
 import lombok.Data;
 
-@Data // gera os metodos get e set de modo agil
-@Entity //establecer uma conexao com minha class no caso entidade e tabela do mesmo nome nobanco de dados
+@Data
+@Entity(name = "funcionarios_entity")
 public class Funcionarios {
 
 
@@ -32,12 +32,6 @@ public class Funcionarios {
     @Column(nullable = false, length = 50)
     private String cargo;
 
-   /* public Funcionarios(Long id,String nome, String status, String cargo){
-        this.id=id;
-        this.nome=nome;
-        this.status=nome;
-        this.cargo=cargo;
-    }    */
 }
 
 
