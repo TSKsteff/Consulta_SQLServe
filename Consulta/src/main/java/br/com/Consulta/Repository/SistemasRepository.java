@@ -1,11 +1,11 @@
 
-package br.com.Consulta.Repositorio;
+package br.com.Consulta.Repository;
 
-import br.com.Consulta.Model.Sistemas;
+import br.com.Consulta.Model.Sistema;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SistemasRepositorio extends JpaRepository<Sistemas, Long> {
+public interface SistemasRepository extends JpaRepository<Sistema, Long> {
     
 }

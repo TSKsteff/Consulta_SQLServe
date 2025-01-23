@@ -2,11 +2,18 @@
 package br.com.Consulta.Controller;
 
 
-import br.com.Consulta.Model.Sistemas;
+import br.com.Consulta.Model.Funcionario;
+import br.com.Consulta.Model.Sistema;
 
-import br.com.Consulta.Repositorio.SistemasRepositorio;
+import br.com.Consulta.Repository.SistemasRepository;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+
+import br.com.Consulta.service.FuncionariosService;
+import br.com.Consulta.service.SistemaService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,48 +25,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/Sistemas")
 public class SistemasController {
- 
-       
-    @Autowired
-    private SistemasRepositorio sistemasRE;
-    
+
+
+    private final SistemaService sistemaService;
+
     @GetMapping
-    public List<Sistemas> listarTodos() {
-        return sistemasRE.findAll();
+    public List<Sistema> listarTodos() throws IOException {
+        return sistemaService.findAll();
     }
-    
-    @GetMapping(value="/{id}")
-    public Optional<Sistemas> listarPeloId(@PathVariable Long id) {
-        return sistemasRE.findById(id);
-    }
-    
-    @PostMapping
-    public Sistemas adicionar(@RequestBody Sistemas sis) {
-        return sistemasRE.save(sis);
-    }
-    
-    @PutMapping(value="/{id}")
-    public ResponseEntity editar(@PathVariable Long id, @RequestBody Sistemas sis) {
-        return sistemasRE.findById(id)
-                .map(record -> {
-                    record.setNome(sis.getNome());
-                    record.setEmpresa(sis.getEmpresa());
-                    record.setResponsavel(sis.getResponsavel());
-                    Sistemas sist = sistemasRE.save(record);
-                    return ResponseEntity.ok().body(sist);
-                }).orElse(ResponseEntity.notFound().build());
-    }
-    
-    @DeleteMapping(value="/{id}")
-    public ResponseEntity deletar(@PathVariable Long id) {
-        return sistemasRE.findById(id)
-                .map(record-> {
-                    sistemasRE.deleteById(id);
-                    return ResponseEntity.ok().build();
-                }).orElse(ResponseEntity.notFound().build());
-    }
-    
 }

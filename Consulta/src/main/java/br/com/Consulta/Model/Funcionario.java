@@ -15,7 +15,7 @@ import lombok.Data;
 
 @Data
 @Entity(name = "funcionarios_entity")
-public class Funcionarios {
+public class Funcionario {
 
 
     @Id
